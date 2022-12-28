@@ -1,0 +1,7 @@
+{
+    "user": "root",
+    "password": "Matrix1999@",
+    "database": "mondiali_calcio",
+    "host": "localhost",
+    "port": "3306"
+  }
