@@ -26,13 +26,6 @@ class Squadra_dao:
         MySql.query(f"select * \
                         from squadra \
                         where PosizioneInClassifica != 1")
-        # MySql.query(f"select * \
-        #                 from organizzazione org \
-        #                 where nazione not in ( \
-        #                                     select nazione \
-        #                                     from squadra s \
-        #                                     where anno = org.anno and PosizioneInClassifica = 1 \
-		# 		                            ) as squadre_vincenti")  
         data = MySql.getResults()
         results = list()
         for element in data:
