@@ -19,3 +19,24 @@ class Squadra_dao:
         MySql.closeConnection()
         
         return data
+    
+    @classmethod
+    def get_nations_never_won_championship_organized_by_them(cls):
+        MySql.openConnection()
+        MySql.query(f"select * \
+                        from squadra \
+                        where PosizioneInClassifica != 1")
+        # MySql.query(f"select * \
+        #                 from organizzazione org \
+        #                 where nazione not in ( \
+        #                                     select nazione \
+        #                                     from squadra s \
+        #                                     where anno = org.anno and PosizioneInClassifica = 1 \
+		# 		                            ) as squadre_vincenti")  
+        data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Squadra(element[0], element[1], element[2], element[3]))
+        MySql.closeConnection()
+        
+        return results

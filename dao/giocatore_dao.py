@@ -19,3 +19,23 @@ class Giocatore_dao:
         MySql.closeConnection()
         
         return data
+    
+    @classmethod
+    def get_players_3_championship_or_more_nation(cls):
+        MySql.openConnection()
+        MySql.query(f"select * \
+                    from giocatore g \
+                    where (select count(*) \
+		                    from partecipazione \
+		                    where IDGiocatore \
+		                ) = 3 \
+                    or (select count(Nazione) \
+                        from partecipazione \
+                        where IDGiocatore) > 1")
+        data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Giocatore(element[0], element[1]))
+        MySql.closeConnection()
+        
+        return results

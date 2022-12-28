@@ -6,7 +6,7 @@ class Squadra:
         self.posizioneInClassifica = posizioneInClassifica
     
     def __str__(self):
-        return 'Nazione: {}, Anno: {}, Allenatore: {}, Posizione in Classifica: {}'.format(self.nazione, self.anno, self.allenatore, self.posizioneInClassifica)
+        return f'Nazione: {self.nazione}, Anno: {self.anno}, Allenatore: {self.allenatore}, Posizione in Classifica: {self.posizioneInClassifica}'
     
     @property
     def nazione(self):
