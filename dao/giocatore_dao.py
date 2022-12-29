@@ -29,9 +29,10 @@ class Giocatore_dao:
 		                    from partecipazione \
 		                    where IDGiocatore \
 		                ) = 3 \
-                    or (select count(Nazione) \
+                    or (select count(*) \
                         from partecipazione \
-                        where IDGiocatore) > 1")
+                        where IDGiocatore \
+                        group by Nazione) > 1")
         data = MySql.getResults()
         results = list()
         for element in data:
