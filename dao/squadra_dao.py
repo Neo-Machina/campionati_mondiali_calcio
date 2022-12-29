@@ -21,7 +21,7 @@ class Squadra_dao:
         return data
     
     @classmethod
-    def get_nations_never_won_championship_organized_by_them(cls):
+    def get_nations_never_won_championship(cls):
         MySql.openConnection()
         MySql.query(f"select * \
                         from squadra \
