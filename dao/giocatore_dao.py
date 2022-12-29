@@ -27,16 +27,13 @@ class Giocatore_dao:
                     from giocatore g \
                     where (select count(*) \
 		                    from partecipazione \
-		                    where IDGiocatore \
+		                    where IDGiocatore = g.id \
 		                ) = 3 \
-                    or (select count(*) \
+                    or (select count(distinct Nazione) \
                         from partecipazione \
-                        where IDGiocatore \
-                        group by Nazione) > 1")
+                        where IDGiocatore = g.id \
+                        ) > 1")
         data = MySql.getResults()
-        results = list()
-        for element in data:
-            results.append(Giocatore(element[0], element[1]))
         MySql.closeConnection()
         
-        return results
+        return data

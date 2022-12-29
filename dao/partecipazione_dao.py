@@ -26,13 +26,11 @@ class Partecipazione_dao:
         MySql.query(f"select anno, nazione, count(*) as numero_giocatori \
                         from partecipazione p \
                         group by p.anno, nazione \
-                        having count(*) >= ( select count(*) \
-                                            from partecipazione")
+                        having count(*) >= ALL ( select count(*) \
+                                            from partecipazione \
+                                            where p.anno = anno \
+                                            group by Nazione)")
         data = MySql.getResults()
-        results = list()
-        for element in data:
-            results.append(Partecipazione(element[0], element[1], element[2], element[3], element[4]))
-        MySql.closeConnection()
         MySql.closeConnection()
         
-        return results
+        return data
